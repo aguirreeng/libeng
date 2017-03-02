@@ -179,7 +179,7 @@ def WenYu1966(Re, alpha_f = 1.0):
 
 def Ergun1958(Re, alpha_f, phi = 1.0):
     '''
-    Ergun1958 - Function to calculate the drag coefficient for dense dense particle
+    Function to calculate the drag coefficient for dense dense particle
     flow using the correlation derived from the Ergun (1958) equation. The correlation was 
     derived from the Ergun equation, that is a redefinition of the phases momentum transfer 
     coefficient K_sf, and the standard definition of the phases momentum transfer 
@@ -203,7 +203,7 @@ def Ergun1958(Re, alpha_f, phi = 1.0):
     . the Ergun (1958) correlation is valid for alpha_f < 0.8
 
     TODO:
-    . make the function valid only for Re = 0.0 and alpha_f = 1.0!
+    . make the function valid for Re = 0.0 and alpha_f = 1.0!
     '''
 
     # GIDASPOW (1993), page 36, equation (2.11)
