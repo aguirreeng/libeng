@@ -1,6 +1,7 @@
 import math
 import numpy
 
+
 def MatrixFromQuaternion(q):
     m = numpy.zeros((3,3), dtype=numpy.float64)
     m[0,0] = 1.0 - 2.0 * q[2] * q[2] - 2.0 * q[3] * q[3]
@@ -49,7 +50,7 @@ def HamiltonProduct(q1, q2):
     return p
 
 
-def Conjugate(q):
+def QuaternionConjugate(q):
     p = numpy.array(q, dtype = numpy.float64)
     p[1:] *= -1
 
@@ -58,6 +59,25 @@ def Conjugate(q):
 
 def RotateVectorByQuaternion(v, q):
     p = numpy.hstack((0.0, v))
-    p = HamiltonProduct(HamiltonProduct(q, p), Conjugate(q))
+    p = HamiltonProduct(HamiltonProduct(q, p), QuaternionConjugate(q))
     
     return p[1:]
+
+
+def CalculateRotationMatrixFromBases(b1, b2, b3, v1, v2, v3):
+    b1n = b1 / numpy.linalg.norm(b1)
+    b2n = b2 / numpy.linalg.norm(b2)
+    b3n = b3 / numpy.linalg.norm(b3)
+    v1n = v1 / numpy.linalg.norm(v1)
+    v2n = v2 / numpy.linalg.norm(v2)
+    v3n = v3 / numpy.linalg.norm(v3)
+    
+    V = numpy.matmul(v1n.reshape(3,1), b1n.reshape((1,3))) \
+      + numpy.matmul(v2n.reshape(3,1), b2n.reshape((1,3))) \
+      + numpy.matmul(v3n.reshape(3,1), b3n.reshape((1,3)))
+        
+    U, Q, W = numpy.linalg.svd(V)
+    
+    R = numpy.matmul(U,W)
+    
+    return R
