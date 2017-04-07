@@ -418,7 +418,8 @@ def HillKochLadd2001(Re, alpha_f = 1.0):
     #calculating F0
     if alpha_s > 0.01 and alpha_s < 0.4:
         F0 = (1.0-w) * ((1.0+(3.0 * np.sqrt(alpha_s/2.0))
-            + (135.0/64.0)*alpha_s*np.log(alpha_s) + 17.14*alpha_s )/(1.0 + 0.681 *alpha_s - 8.48 * alpha_s * alpha_s + 8.16 * alpha_s * alpha_s * alpha_s))\
+            + (135.0/64.0)*alpha_s*np.log(alpha_s) + 17.14*alpha_s ) / \
+            (1.0 + 0.681 *alpha_s - 8.48 * alpha_s * alpha_s + 8.16 * alpha_s * alpha_s * alpha_s)) \
             + w* (10* alpha_s/np.power((1.0 - alpha_s), 3.0))
     else:
         F0 = (10* alpha_s/np.power((1.0 - alpha_s), 3.0))
