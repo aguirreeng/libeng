@@ -1,3 +1,6 @@
+.vs/
+*.pyproj
+*.sln
 *.pdb
 *.pyc
 __pycache__
